@@ -21,15 +21,16 @@ A GitHub Action that scans your repository for dependencies and security vulnera
 ### Basic Usage
 
 ```yaml
-name: Security Scan
+name: Dependency Scan
 on:
   push:
     branches: [ main ]
+
   pull_request:
     branches: [ main ]
 
 jobs:
-  security-scan:
+  dependency-scan:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
