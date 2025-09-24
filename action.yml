@@ -1,0 +1,22 @@
+name: 'TrustSource TS-Scan Action'
+description: 'GitHub Action to scan repository content using TrustSource TS-Scan'
+author: 'TrustSource'
+
+inputs:
+  project_name:
+    description: 'Project name'
+    required: true
+  api_key:
+    description: 'TrustSource API Key'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    PROJECT_NAME: ${{ inputs.project_name }}
+    API_KEY: ${{ inputs.api_key }}
+
+branding:
+  icon: 'shield'
+  color: 'blue'
