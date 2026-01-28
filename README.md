@@ -1,83 +1,41 @@
-# TrustSource TS-Scan Action
+## The Silent Storm: Navigating the Post-Quantum Cryptographic Shift
 
-A GitHub Action that scans your repository for dependencies and security vulnerabilities using the TrustSource [ts-scan](https://github.com/TrustSource/ts-scan) tool.
+In the digital realm, we often take for granted that our "locks"—the encryption safeguarding our bank transfers, state secrets, and private messages—are unbreakable. For decades, this has been true. However, a silent storm is gathering on the horizon of computation: the advent of **cryptanalytically relevant quantum computers**.
 
-## Features
+### **The Quantum Threat: Breaking the Unbreakable**
 
-- Scans multiple dependency management systems (NPM, Maven, Gradle,  Python, Nuget)
-- Runs in a secure Docker container
-- Easy integration with existing workflows
+Current cryptographic standards, such as RSA and Elliptic Curve Cryptography (ECC), rely on mathematical problems that are prohibitively difficult for classical computers to solve (e.g., factoring large prime numbers). A quantum computer, utilizing the principles of superposition and entanglement, can process information in ways a classical machine cannot.
 
-## Inputs
+Specifically, **Shor’s Algorithm** allows a sufficiently powerful quantum computer to crack these asymmetric "locks" in minutes. This creates a "harvest now, decrypt later" risk: adversaries may be capturing encrypted data today, waiting for the technology to mature so they can unlock it in the future.
 
-| Input | Description | Required |
-|-------|-------------|----------|
-| `api_key` | TrustSource API key for authentication | Yes |
-| `project_name` | Name of the project to scan in TrustSource | Yes |
+### **Lessons from History: The Agony of Transition**
 
+We have been here before, though never with such high stakes. Historical transitions offer a cautionary tale:
 
-## Usage
+- **DES to AES:** When the Data Encryption Standard (DES) was cracked in the late 90s, the migration to the Advanced Encryption Standard (AES) took nearly a decade.
+- **SHA-1 Deprecation:** The move away from the SHA-1 hashing algorithm (after it was found vulnerable) was plagued by "zombie" systems that continued to use the insecure standard for years, leading to widespread vulnerabilities.
+- **The Y2K Comparison:** Like Y2K, PQC migration has a "deadline" dictated by hardware progress. However, unlike Y2K, we don't know the exact date the clock hits midnight.
 
-### Basic Usage
+The primary challenge in these historical shifts wasn't the new math; it was ***visibility***. Organizations often didn't know where their cryptography was "hard-coded," making updates a manual, error-prone nightmare of hunting through legacy code and hardware.
 
-```yaml
-name: Dependency Scan
-on:
-  push:
-    branches: [ main ]
+### **The Solution: Cryptographic Agility**
 
-  pull_request:
-    branches: [ main ]
+The US Department of War and global security experts are now mandating a proactive approach: ***Cryptographic Agility***.
 
-jobs:
-  dependency-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Run TrustSource Scan
-        uses: TrustSource/ts-scan-action@v1
-        with:
-          project_name: 'my-awesome-project'
-          api_key: ${{ secrets.TRUSTSOURCE_API_KEY }}
-```
+Crypto agility is the ability of an information system to rapidly switch between cryptographic algorithms without requiring significant infrastructure changes or massive code rewrites. Instead of being "bolted on," security becomes modular. This approach is essential because:
 
-## Setup
+1. **Algorithms evolve:** As NIST standardizes PQC, initial versions may need updates as new vulnerabilities are discovered.
+2. **Hybridization:** Migration often requires running legacy and quantum-resistant algorithms side-by-side during a transition period.
+3. **Future-Proofing:** An agile system can adapt to the *next* threat without a multi-year "rip and replace" cycle.
 
-### 1. Get your TrustSource API Key
+To achieve this, organizations must first establish a comprehensive **cryptographic inventory**, identifying every instance of encryption across national security systems, cloud assets, and IoT devices.
 
-1. Log in to your [TrustSource account](https://app.trustsource.io/)
-2. Navigate to your account settings (Administration/Scanners&API Keys)
-3. Generate or copy your API key
+### **Take the Next Step with TrustSource**
 
-### 2. Add API Key to GitHub Secrets
+Navigating the migration to Post-Quantum Cryptography (PQC) doesn't have to be a journey into the unknown. **TrustSource** provides the tools and expertise to ensure your organization remains resilient.
 
-1. Go to your repository settings
-2. Navigate to "Secrets and variables" → "Actions"
-3. Click "New repository secret"
-4. Name: `TRUSTSOURCE_API_KEY`
-5. Value: Your TrustSource API key
+- **TrustSource Cryptographic Discovery Services:** We help you identify, inventory, and assess your current cryptographic footprint, mapping out a risk-managed path to quantum resistance.
+- **Crypto Agility Whitepaper:** Learn the technical frameworks for building modular security architectures that survive the quantum transition.
 
-### 3. Create Workflow File
+**[Download the TrustSource Crypto Agility Whitepaper Here]** *Stay ahead of the curve. Secure your future today.*
 
-Create `.github/workflows/security-scan.yml` in your repository with the usage example above.
-
-
-## Repository Access
-
-The action has full access to the repository content where it's executed, allowing it to:
-- Read dependency files
-- Analyze project structure
-- Access source code for scanning
-
-## License
-
-This project is licensed under the terms specified in the LICENSE file.
-
-## Support
-
-For issues related to:
-- **GitHub Action**: Create an issue in this repository
-- **TrustSource Platform**: Contact TrustSource support
-- **TS-Scan Tool**: Refer to [TrustSource documentation](https://trustsource.github.io/ts-scan/)
